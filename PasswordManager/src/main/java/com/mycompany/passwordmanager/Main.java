@@ -39,15 +39,15 @@ public class Main {
                     String servizioCercato = scanner.nextLine();
 
                     // Recupera la password del servizio cercato
-                    
                     ServizioRecuperatoDto servizio = GestisciServizi.recuperaServizio(servizioCercato);
 
                     if (servizio == null || servizio.getPasswordServizio() == null) {
                         System.out.println("Non esiste ancora il servizio che hai indicato");
                     } else {
                         try {
-                            System.out.println("INVIO DELLA MAIL IN CORSO");
-                            Mail.sendEmail(servizio.getPasswordServizio());
+//                            System.out.println("INVIO DELLA MAIL IN CORSO");
+//                            Mail.sendEmail(servizio.getPasswordServizio());
+                            System.out.println(servizio.getPasswordServizio());
                             servizio.cleanServiceDto();
                         } catch (Exception e) {
                             System.err.println("ERRORE");
@@ -63,7 +63,6 @@ public class Main {
                     }
                     break;
                 }
-
             }
         }
     }

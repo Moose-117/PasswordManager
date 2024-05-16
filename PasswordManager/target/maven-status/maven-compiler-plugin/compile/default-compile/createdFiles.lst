@@ -1,7 +1,5 @@
 com\mycompany\passwordmanager\CriptaDecripta.class
 com\mycompany\passwordmanager\GestisciServizi.class
-com\mycompany\passwordmanager\Mail$1.class
 com\mycompany\passwordmanager\CheckProcess.class
 com\mycompany\passwordmanager\ServizioRecuperatoDto.class
-com\mycompany\passwordmanager\Mail.class
 com\mycompany\passwordmanager\Main.class
