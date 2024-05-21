@@ -11,8 +11,8 @@ import org.bouncycastle.util.encoders.DecoderException;
 
 public class GestisciServizi {
 
-    public static void aggiungiServizio() throws NoSuchAlgorithmException {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("Servizi_nuovo.txt", true))) {
+    public static File aggiungiServizio(File file) throws NoSuchAlgorithmException {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true))) {
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Inserisci il nome del servizio:");
@@ -33,16 +33,17 @@ public class GestisciServizi {
 
             bufferedWriter.write(servizioEncoded + "," + passwordEncoded + "," + saltEncoded);
             bufferedWriter.newLine();
-
+            
             System.out.println("Servizio aggiunto correttamente.");
         } catch (IOException e) {
             System.out.println("Si è verificato un errore: " + e.getMessage());
         }
+        return file;
     }
 
-    public static ServizioRecuperatoDto recuperaServizio(String servizioCercato) throws NoSuchAlgorithmException {
+    public static ServizioRecuperatoDto recuperaServizio(String servizioCercato, File file) throws NoSuchAlgorithmException {
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("Servizi_nuovo.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 
             ServizioRecuperatoDto servizioRecuperato = new ServizioRecuperatoDto();
             String linea;

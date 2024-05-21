@@ -1,5 +1,7 @@
 package com.mycompany.passwordmanager;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
@@ -10,23 +12,29 @@ import org.bouncycastle.util.encoders.Base64;
 public class Main {
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
-        String password = null;
+    	File file = null;
+    	String password = null;
         Scanner scanner = new Scanner(System.in);
         Boolean isMasterPasswordCorretta = Boolean.FALSE;
         Integer counter = 0;
+        
 
         System.out.println("BENVENUTO NEL PASSWORD MANAGER, INSERISCI LA PASSWORD PER ACCEDERE AL TOOL\n\n");
 
-        do {
-            String masterPassword = scanner.nextLine();
-            counter++;
-
-            // Confronta la password inserita dall'utente con il valore dell'ambiente
-            if (counter == 10 && masterPassword.equals("HELLOSPANK$92") && CheckProcess.isProcessRunning("regedit")) {
-                isMasterPasswordCorretta = true;
-            }
-        } while (!isMasterPasswordCorretta);
-
+//        do {
+//            String masterPassword = scanner.nextLine();
+//            counter++;
+//
+//            // Confronta la password inserita dall'utente con il valore dell'ambiente
+//            if (counter == 10 && masterPassword.equals("HELLOSPANK$92") && CheckProcess.isProcessRunning("regedit")) {
+//                isMasterPasswordCorretta = true;
+//            }
+//        } while (!isMasterPasswordCorretta);
+        try {
+			 file = GestoreFile.cercaFile();
+		} catch (IOException e) {
+			System.out.println("errore nel recupero del file da chiavetta USB");
+		}
         while (true) {
             System.out.println("BENVENUTO NEL PASSWORD MANAGER\n\n");
             System.out.println("SELEZIONA:\n");
@@ -39,14 +47,12 @@ public class Main {
                     String servizioCercato = scanner.nextLine();
 
                     // Recupera la password del servizio cercato
-                    ServizioRecuperatoDto servizio = GestisciServizi.recuperaServizio(servizioCercato);
+                    ServizioRecuperatoDto servizio = GestisciServizi.recuperaServizio(servizioCercato, file);
 
                     if (servizio == null || servizio.getPasswordServizio() == null) {
                         System.out.println("Non esiste ancora il servizio che hai indicato");
                     } else {
                         try {
-//                            System.out.println("INVIO DELLA MAIL IN CORSO");
-//                            Mail.sendEmail(servizio.getPasswordServizio());
                             System.out.println(servizio.getPasswordServizio());
                             servizio.cleanServiceDto();
                         } catch (Exception e) {
@@ -57,7 +63,7 @@ public class Main {
                 }
                 case "2": {
                     try {
-                        GestisciServizi.aggiungiServizio();
+                        file = GestisciServizi.aggiungiServizio(file);
                     } catch (NoSuchAlgorithmException ex) {
                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                     }
