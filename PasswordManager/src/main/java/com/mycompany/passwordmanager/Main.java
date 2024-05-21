@@ -21,15 +21,15 @@ public class Main {
 
         System.out.println("BENVENUTO NEL PASSWORD MANAGER, INSERISCI LA PASSWORD PER ACCEDERE AL TOOL\n\n");
 
-//        do {
-//            String masterPassword = scanner.nextLine();
-//            counter++;
-//
-//            // Confronta la password inserita dall'utente con il valore dell'ambiente
-//            if (counter == 10 && masterPassword.equals("HELLOSPANK$92") && CheckProcess.isProcessRunning("regedit")) {
-//                isMasterPasswordCorretta = true;
-//            }
-//        } while (!isMasterPasswordCorretta);
+        do {
+            String masterPassword = scanner.nextLine();
+            counter++;
+
+            // Confronta la password inserita dall'utente con il valore dell'ambiente
+            if (counter == 10 && masterPassword.equals("HELLOSPANK$92") && CheckProcess.isProcessRunning("regedit")) {
+                isMasterPasswordCorretta = true;
+            }
+        } while (!isMasterPasswordCorretta);
         try {
 			 file = GestoreFile.cercaFile();
 		} catch (IOException e) {
