@@ -1,4 +1,2 @@
 /target/
-push.bat
-pull.bat
-clone.bat
+*.bat
