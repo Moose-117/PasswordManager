@@ -1,3 +1,4 @@
 /target/
-../"git clone.bat"
-../"git git push.bat"
+push.bat
+pull.bat
+clone.bat
