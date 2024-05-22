@@ -8,15 +8,27 @@ import java.nio.file.Paths;
 
 public class GestoreFile {
 
-	public static File cercaFile() throws IOException {
-		String percorso = "D:\\\\new.txt";
+	public static File cercaFilePassword() throws IOException {
+		String percorso = "D:\\\\Servizi_nuovo.txt";
 		Path path = Paths.get(percorso);
 
 		if (Files.exists(path)) {
-			System.out.println("IL PATH TROVATO E': " + percorso);
 			return path.toFile();
 		}
 
 		throw new IOException();
 	}
+	
+	public static File cercaFileMasterPassword() throws IOException {
+		String percorso = "D:\\\\MasterPassword.txt";
+		Path path = Paths.get(percorso);
+
+		if (Files.exists(path)) {
+			return path.toFile();
+		}
+
+		throw new IOException();
+	}
+	
+	
 }
