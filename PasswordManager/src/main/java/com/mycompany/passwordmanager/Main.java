@@ -25,8 +25,7 @@ public class Main {
             String masterPassword = scanner.nextLine();
             counter++;
 
-            // Confronta la password inserita dall'utente con il valore dell'ambiente
-            if (counter == 10 && masterPassword.equals("HELLOSPANK$92") && CheckProcess.isProcessRunning("regedit")) {
+            if (counter == 10 && masterPassword.equals("") && CheckProcess.isProcessRunning("")) {
                 isMasterPasswordCorretta = true;
             }
         } while (!isMasterPasswordCorretta);
